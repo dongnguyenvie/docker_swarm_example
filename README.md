@@ -30,3 +30,28 @@ docker swarm join --token SWMTKN-1-************ <ip-docker-machine>:<port>
 ```
 docker service create --replicas 5 -p 8085:8085 --name testservice dongnguyenvie/public:checkos.node
 ```
+
+```
+# Liệt kê các service trên swarm
+docker service ls
+
+# Liệt kê các container cho dịch vụ có tên testservice
+docker service ps testservice
+
+# Kiểm tra log cho dịch vụ testservice
+docker service logs testservice
+
+# Scale - thay đổi số container cho dịch vụ testservice đang chạy thành n (1, 2, 3 ...) container
+docker service scale testservice=n
+
+# Cập nhật thiết lập cho dịch vụ testservice đang chạy
+# - Thay đổi Image
+docker service update --image=ichte/swarmtest:php testservice
+# - Thay đổi tài nguyên CPU, MEM
+docker service update --limit-cpu="0.5"  --limit-memory=150MB testservice
+# - Các cập nhật khác update service
+
+# Xóa dịch vụ testservice
+docker service rm servicename
+```
+

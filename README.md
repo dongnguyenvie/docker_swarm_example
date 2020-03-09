@@ -55,3 +55,10 @@ docker service update --limit-cpu="0.5"  --limit-memory=150MB testservice
 docker service rm servicename
 ```
 
+### Docker stack
+
+```
+docker-machine scp docker-compose.yml vps1:/home/docker-compose.yml
+docker-machine ssh vps1
+docker stack deploy --compose-file docker-compose.yml teststack
+```
